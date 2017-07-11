@@ -6,18 +6,41 @@ import java.util.Calendar;
 /**
  * Created by saibaba on 7/10/17.
  */
+enum BodyLocation{
+    EAR, MOUTH, ARMPIT
+}
+
+// Date, Calendar predefined classes ->
+// Calendar better than Date because, Date has deprecated functions
+
 class Allergy {
     private String allergyName;
     private Severity severity;
     private Calendar startDate;
     private Calendar endDate;
+    private BodyLocation loc;
 
     public Allergy(){}
-    public Allergy(String allergyName, Severity severity, Calendar startDate, Calendar endDate){
+    public Allergy(String allergyName, Severity severity, Calendar startDate, Calendar endDate, BodyLocation loc){
         this.allergyName = allergyName;
         this.severity = severity;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.loc = loc;
+    }
+
+    public Allergy(String allergyName, Severity severity, BodyLocation loc) {
+        this.allergyName = allergyName;
+        this.severity = severity;
+        this.loc = loc;
+    }
+
+    public BodyLocation getLoc() {
+        return loc;
+    }
+
+    public void setLoc(BodyLocation loc) {
+        this.loc = loc;
     }
 
     public String getAllergyName() {

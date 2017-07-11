@@ -10,13 +10,16 @@ import java.util.GregorianCalendar;
  */
 public class Main {
     public static void main(String[] args) {
-        Calendar start = new GregorianCalendar(2017, 4, 9);
-        System.out.println(start.get(Calendar.YEAR) + " / " + start.get(Calendar.MONTH) + " / " + start.get(Calendar.DATE));
-        SimpleDateFormat sdf = new SimpleDateFormat("MM:dd:yyyy");
+        Calendar start = new GregorianCalendar(2017, 3, 9);
+        // 2 ways, pure calendar (or) date with sdf
+        System.out.println(start.get(Calendar.MONTH)+1  + " / " + start.get(Calendar.YEAR) + " / "  + start.get(Calendar.DATE));
+
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM d, ''yy");
         System.out.println(sdf.format(start.getTime()));
+
         Calendar end = new GregorianCalendar(2017,5,10);
-        System.out.println(sdf.format(start.getTime()));
-        Allergy myAllergy = new Allergy("Rash",Severity.HIGH,start,end);
-        System.out.println(myAllergy.toString());
+        System.out.println(sdf.format(end.getTime()));
+
+        // System.out.println(myAllergy.toString());
     }
 }
