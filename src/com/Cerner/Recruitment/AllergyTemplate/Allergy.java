@@ -20,8 +20,8 @@ class Allergy {
     private Calendar endDate;
     private BodyLocation loc;
 
-    public Allergy(){}
-    public Allergy(String allergyName, Severity severity, Calendar startDate, Calendar endDate, BodyLocation loc){
+    public Allergy(){} // empty argument constructor
+    public Allergy(String allergyName, Severity severity, Calendar startDate, Calendar endDate, BodyLocation loc){ // argument const
         this.allergyName = allergyName;
         this.severity = severity;
         this.startDate = startDate;
@@ -82,6 +82,5 @@ class Allergy {
                 ", severity= " + severity +
                 ", startDate= " + sdf.format(startDate.getTime()) +
                 ", endDate= " + sdf.format(endDate.getTime());
-
     }
 }

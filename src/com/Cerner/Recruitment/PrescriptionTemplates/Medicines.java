@@ -7,37 +7,68 @@ import java.util.Calendar;
  * Created by saibaba on 7/10/17.
  */
 class Medicines {
-    String Name;
+    String name;
     Calendar start;
     Calendar stop;
     Calendar timings;
+    String dosage;
+    int quanitity;
     Calendar manifacturedDate;
-    Calendar ExpiryDate;
+    Calendar expiryDate;
     ArrayList<String> sideEffects;
     String manfacturingCompany;
     Timings times;
     ArrayList<String> chemicals;
+    boolean refill;
 
     Medicines(){}
-    Medicines(String name, Calendar start, Calendar stop, Calendar timings, Calendar manifacturedDate, Calendar expiryDate, ArrayList<String> sideEffects, String manfacturingCompany, Timings times, ArrayList<String> chemicals) {
-        Name = name;
+
+    public Medicines(String name, Calendar start, Calendar stop, Calendar timings, String dosage, int quanitity, Calendar manifacturedDate, Calendar expiryDate, ArrayList<String> sideEffects, String manfacturingCompany, Timings times, ArrayList<String> chemicals, boolean refill) {
+        this.name = name;
         this.start = start;
         this.stop = stop;
         this.timings = timings;
+        this.dosage = dosage;
+        this.quanitity = quanitity;
         this.manifacturedDate = manifacturedDate;
-        ExpiryDate = expiryDate;
+        this.expiryDate = expiryDate;
         this.sideEffects = sideEffects;
         this.manfacturingCompany = manfacturingCompany;
         this.times = times;
         this.chemicals = chemicals;
+        this.refill = refill;
+    }
+
+    public String getDosage() {
+        return dosage;
+    }
+
+    public void setDosage(String dosage) {
+        this.dosage = dosage;
+    }
+
+    public int getQuanitity() {
+        return quanitity;
+    }
+
+    public void setQuanitity(int quanitity) {
+        this.quanitity = quanitity;
+    }
+
+    public boolean isRefill() {
+        return refill;
+    }
+
+    public void setRefill(boolean refill) {
+        this.refill = refill;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public Calendar getStart() {
@@ -73,11 +104,11 @@ class Medicines {
     }
 
     public Calendar getExpiryDate() {
-        return ExpiryDate;
+        return expiryDate;
     }
 
     public void setExpiryDate(Calendar expiryDate) {
-        ExpiryDate = expiryDate;
+        this.expiryDate = expiryDate;
     }
 
     public ArrayList<String> getSideEffects() {
