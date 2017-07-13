@@ -13,7 +13,7 @@ enum BodyLocation{
 // Date, Calendar predefined classes ->
 // Calendar better than Date because, Date has deprecated functions
 
-class Allergy {
+public class Allergy {
     private String allergyName;
     private Severity severity;
     private Calendar startDate;

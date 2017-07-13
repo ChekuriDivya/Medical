@@ -56,9 +56,10 @@ public class Temperature {
     }
 
     void compareTemparatures(ArrayList<Temperature> temps) {
-        for (Temperature t1 : temps) {
+        comparing:                                        //label
+        for (Temperature t1 : temps) {                   //enhanced for loop
             for (Temperature t2 : temps) {
-                if (t1.location == t2.location) {
+                if (t1.location == t2.location) { // order of n2 -> n times n
                     Date d2 = t2.cal.getTime();
                     Date d1 = t1.cal.getTime();
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 'T' HH:mm:ss.SSSZ");
@@ -81,7 +82,7 @@ public class Temperature {
 
                     if (year2 == year1) { // same year
                         String month1_ele = day1_ele[1]; // "04"
-                        String month2_ele = day2_ele[2]; // "04"
+                        String month2_ele = day2_ele[1]; // "04"
                         int month1 = Integer.parseInt(month1_ele); // 04
                         int month2 = Integer.parseInt(month2_ele); // 04
 
@@ -104,14 +105,18 @@ public class Temperature {
 
                                 int parse_hour1 = Integer.parseInt(hour1); // 10
                                 int parse_hour2 = Integer.parseInt(hour2); // 11
-                                // Take 10 as threshold value for comparing 2 temp
+
+                                // Take 10 as threshold value for comparing 2 temp. if not take new reading
+                                // if within 10 hours, lets check
                                 if (Math.abs(parse_hour2 - parse_hour1) <= 10) {
                                     if (t1.measurement == t2.measurement) {
-                                        calculateFever(t1.temparature, t2.temparature);
+                                        calculateFever(t1.temparature, t2.temparature,t1.default_temparature,t2.default_temparature);
+                                        break comparing;
                                     } else {
                                         // Measured in two formats;
                                         float temp2 = t2.convert(t1.measurement); // converts into same format
-                                        calculateFever(t1.temparature, temp2);
+                                        calculateFever(t1.temparature, temp2,t1.default_temparature,t2.default_temparature);
+                                        break comparing;
                                     }
                                 }
 
@@ -123,15 +128,20 @@ public class Temperature {
         }
     }
 
-    void calculateFever(float t1, float t2) {
-        float temp_diff = t2 - t1;
-        if (temp_diff >= 5) {
-            System.out.println("got fever");
-        } else if(temp_diff <=-5) {
-            System.out.println("Fever Decresing");
-        }
-        else {
-            System.out.println("No Fever");
+    void calculateFever(float t1, float t2, float t1_default, float t2_default) { // (97, 100, 94, 94), (100,97,94,94)
+        float temp_diff = t2 - t1; // 100-97 = 3
+        if (temp_diff > 0) { // t2 is bigger
+            float diff = t2 - t2_default;
+            if(diff >= 5){
+                System.out.println("got fever");
+            }
+        } else if(temp_diff <0){ // 97 -100 = -3, t1 is bigger
+            float diff = t1 - t1_default;
+            if(diff >=5){
+                System.out.println("got fever");
+            }
+        }else{
+            System.out.println("Same body temp");
         }
     }
 
